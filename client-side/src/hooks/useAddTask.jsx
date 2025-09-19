@@ -7,15 +7,17 @@ function useAddTask() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const addtask = (request) => {
+  const addtask = async (request) => {
     setLoading(true);
     try {
-      handleaddTask(request)
+      await handleaddTask(request)
         .then((response) => {
+          console.log(response);
           dispatch(addTask(response.data.data));
-          setSuccess(response.data.status);
+          setSuccess(response.data.message);
         })
         .catch((error) => {
+          console.log(error);
           setError(error);
         });
     } catch (error) {

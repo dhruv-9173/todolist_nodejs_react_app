@@ -10,7 +10,7 @@ const taskRoutes = require("./Routes/taskRoutes");
 const checkAuth = require("./Middlewares/auth");
 connectdb("mongodb://127.0.0.1:27017/TODOLIST");
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

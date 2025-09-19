@@ -14,21 +14,21 @@ const handleAddTask = (req, res) => {
   const task = req.body;
   try {
     if (!task.name || !task.description || !task.priority || !task.deadline)
-      return res.status(200).json({ status: "All fields are required" });
+      return res.status(400).json({ message: "All fields are required" });
     else {
       taskService
         .addTask(email, task)
         .then((response) => {
           return res
             .status(201)
-            .json({ status: "Task Successfully Added", data: response });
+            .json({ message: "Task Successfully Added", data: response });
         })
         .catch((err) => {
-          return res.status(400).json({ "Error Occured": err });
+          return res.status(400).json({ error: err });
         });
     }
   } catch (err) {
-    return res.status(500).json({ "Error Occured": err });
+    return res.status(500).json({ error: err });
   }
 };
 

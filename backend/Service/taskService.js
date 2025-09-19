@@ -17,6 +17,7 @@ const addTask = async (email, req) => {
     description: req.description,
     priority: req.priority,
     deadline: req.deadline,
+    status: "PENDING",
   });
   return await task.save();
 };

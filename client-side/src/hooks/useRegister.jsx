@@ -11,12 +11,12 @@ const useRegister = () => {
       handleRegister(request)
         .then((response) => {
           setError("");
-          setSuccess(response.data + ".Please Login to continue");
+          setSuccess(response.data.message + ".Please Login to continue");
         })
         .catch((error) => {
           console.log(error);
           setSuccess("");
-          setError("Email already found");
+          setError(error.response.date.error);
         });
     } catch (error) {
       setError("Server Error");

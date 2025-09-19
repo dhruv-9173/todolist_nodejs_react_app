@@ -13,19 +13,19 @@ const useLogin = () => {
       handleLogin(request)
         .then((response) => {
           console.log(response);
-          localStorage.setItem("user", response.data.status);
+          localStorage.setItem("user", response.data.token);
           Signin(response.data);
           navigate("/");
         })
         .catch((error) => {
           console.log(error);
-          setError(error.response.data.status);
+          setError(error.response.data.error);
+          setLoading(false);
         });
     } catch (error) {
       setError("Server Error");
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return { errors, loading, login };
